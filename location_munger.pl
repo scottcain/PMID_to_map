@@ -2,6 +2,14 @@
 use strict;
 use warnings;
 
+# This script takes a file as it's only argument that contains
+# affiliation info from author_location.py script, one per line.
+# It then calls the geocode_single.py script iteratively trimming off
+# the beginning of the string up to the first comma (then the second, etc)
+# until it returns a lat,long pair. This is then written to a file
+# along with the original query string. If it fails to find a geolocation
+# for a string, it writes "FAILED" to the file.
+
 my $FILEIN = $ARGV[0];
 open IN, "<$FILEIN" or die "couldn't open $FILEIN: $!";
 my $FILEOUT = $FILEIN.'.locs';

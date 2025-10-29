@@ -1,4 +1,12 @@
 #!/usr/bin/env python3
+#
+# This script takes a single PubMed ID and hits the eutils URL
+# to get the affiliation of the last author and writes it to stdout
+#
+# In practice, it's probably a good idea if you are planning on hitting
+# eutils for several PMIDs to do it in a shell script with a sleep of
+# at least a few seconds between requests.
+#
 import sys
 import requests
 import xml.etree.ElementTree as ET

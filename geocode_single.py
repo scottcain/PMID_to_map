@@ -2,6 +2,24 @@ import sys
 import json
 from urllib import parse, request
 
+#
+# This script takes a quoted string on the command line and hits
+# the Nominatim service to assign geocoordinates (ie, latitude and
+# longitude) to the string.
+#
+# Generally speaking, the affiliation string you'd get from a 
+# publication will NOT work as is, so I wrote a wrapper
+# script (location_munger.pl) that will strip off the beginning
+# of the location string up to the first comma and try again,
+# iteratively, until nothing is left. 
+#
+# IMPORTANT NOTE: if you use this script be aware that the service 
+# is limited to the number of times it can be accesses. I believe the
+# limit is one per second, but to be safe, it generally make it a 
+# sleep of 5 or 10 seconds between requests.
+#
+
+
 def geocode_location(location_string):
     """Geocode a location using Nominatim (OpenStreetMap)"""
     
